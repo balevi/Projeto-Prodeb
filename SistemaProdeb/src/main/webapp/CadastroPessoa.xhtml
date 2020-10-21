@@ -4,32 +4,45 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	>
+	xmlns:p="http://primefaces.org/ui"
+>
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>prodeb.ba</title>
-</h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="CSS" name="Style.css"/>
+	<title>prodeb.ba</title>
+	</h:head>
 <h:body>
-	<h1>Cadastro de funcionário</h1>
-	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputText value="Nome"/>
-			<h:inputText value="#{bean.pessoa.nome}"/>
-			<h:outputText value="E-mail"/>
-			<h:inputText value="#{bean.pessoa.email}"/>
+	<p:graphicImage library="IMG" name="prodeb.png" width="200" />
+	<h1>Cadastro de Funcionário</h1>
+	<h:form id="form">
+		<p:panel header="Cadastro" style="width:50%">
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Nome"/>
+				<p:inputText value="#{bean.pessoa.nome}" size="30" />
+				<p:outputLabel value="E-mail"/>
+				<p:inputText value="#{bean.pessoa.email}" size="30"/>
 			
-			<h:commandButton value="Adicionar" action="#{bean.adicionar}"/>
+				<p:commandButton value="Adicionar" action="#{bean.adicionar}" update="form tabelaPessoa"/>
 			
-		</h:panelGrid>
+			</h:panelGrid>
+		</p:panel>
 	</h:form>
 	
 	<h1>Lista de pessoas</h1>
+	<p:panel style="width:70%">
+	<p:dataTable value="#{bean.pessoas}" var="p" border="1" id="tabelaPessoa">
+		
+		<p:column headerText="Nome" >#{p.nome}</p:column>
+		<p:column headerText="Email" >#{p.email}</p:column>
+		<p:column headerText="Editar" width="70">
+			<p:button value="Editar" outcome="EditaPessoa.xhtml?parametro=#{p.nome}"></p:button>
+		</p:column>
+		<p:column headerText="Excluir" width="70">
+			<p:button value="Excluir" outcome="ExcluirPessoa.xhtml?parametro=#{p.nome}"></p:button>
+		</p:column>
 	
-	<h:dataTable value="#{bean.pessoas}" var="p" border="1">
-		<h:column>#{p.nome}</h:column>
-		<h:column>#{p.email}</h:column>
-	</h:dataTable>
-	
+	</p:dataTable>
+	</p:panel>
 	
 	
 </h:body>
