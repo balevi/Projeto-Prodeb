@@ -12,24 +12,28 @@
 	<title>prodeb.ba</title>
 	</h:head>
 <h:body>
-	<p:graphicImage library="IMG" name="prodeb.png" width="200" />
-	<h1>Cadastro de Funcionário</h1>
+	
+	<p:graphicImage library="IMG" name="prodeb1.png"/>
+	
+	<h1 class="center">CADASTRO DE FUNCIONÁRIO</h1>
 	<h:form id="form">
-		<p:panel header="Cadastro" style="width:50%">
-			<h:panelGrid columns="2">
-				<p:outputLabel value="Nome"/>
-				<p:inputText value="#{bean.pessoa.nome}" size="30" />
-				<p:outputLabel value="E-mail"/>
-				<p:inputText value="#{bean.pessoa.email}" size="30"/>
-			
-				<p:commandButton value="Adicionar" action="#{bean.adicionar}" update="form tabelaPessoa"/>
-			
-			</h:panelGrid>
-		</p:panel>
+		<div class="center">
+			<p:panel icon="ui-icon-check" header="Cadastro" style="width:30%" >
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome"/>
+					<p:inputText value="#{bean.pessoa.nome}" size="30" />
+					<p:outputLabel value="E-mail"/>
+					<p:inputText value="#{bean.pessoa.email}" size="30"/>
+				</h:panelGrid>
+					<div id="right">
+						<p:commandButton icon="ui-icon-check" value="Adicionar" action="#{bean.adicionar}" update="form tabelaPessoa"/>
+					</div>
+			</p:panel>
+		</div>
 	</h:form>
 	
-	<h1>Lista de pessoas</h1>
-	<p:panel style="width:70%">
+	<h1>Lista de Funcionários</h1>
+	<p:panel style="width:80%">
 	<p:dataTable value="#{bean.pessoas}" var="p" border="1" id="tabelaPessoa">
 		
 		<p:column headerText="Nome" >#{p.nome}</p:column>
