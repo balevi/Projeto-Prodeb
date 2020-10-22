@@ -6,18 +6,26 @@
 	xmlns:p="http://primefaces.org/ui"
 	>
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>prodeb.ba</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="CSS" name="Style.css"/>
+	<title>prodeb.ba</title>
 </h:head>
 <h:body>
 	<h1>Login Prodeb</h1>
 	<h:form>
-		<h:panelGrid columns="2">
-			Login <h:inputText/>
-			Senha <h:inputSecret/>
-			<h:commandButton value="Logar"/>
+	<p:messages autoUpdate="true" id="msg"/>
+		<p:panel header="Login" style="width:30%; height:120px" >
 			
-		</h:panelGrid>
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Login:" for="login"/> 
+				<p:inputText  size="25" id="login" placeholder="digite o login aqui..." required="true" requiredMessage="O Login é Obrigatório!"/>
+				<p:outputLabel value="Senha:" for="senha"/> 
+				<p:password size="25" id="senha" placeholder="digite a senha aqui..." required="true" requiredMessage="A Senha é Obrigatório!" feedback="true" weakLabel="muito fraca" goodLabel="Senha razoavel" strongLabel="Senha forte" inline="true"/>
+			</h:panelGrid>
+			<div id="right">
+				<h:commandButton value="Logar"/>
+			</div>
+		</p:panel>
 	</h:form>
 
 </h:body>
