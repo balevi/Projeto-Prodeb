@@ -2,6 +2,7 @@ package Model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,8 +17,12 @@ public class Funcionario implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer id;
+	@Column
 	private String nome;
+	@Column
 	private String email;
+	
+	
 	public String getNome() {
 		return nome;
 	}
