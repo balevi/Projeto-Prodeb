@@ -2,14 +2,14 @@ package Controller;
 
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 import Model.Funcionario;
 import DAO.FuncionarioDao;
 
 @ManagedBean(name="funci")
-@SessionScoped
+@RequestScoped
 public class FuncionarioMB {
 	Funcionario funcionario;
 	List<Funcionario> funcionarios;
@@ -22,8 +22,18 @@ public FuncionarioMB () {
 
 public String salvar() {
 	funcionarioDao.salvar(funcionario);
-	return "CadastroPessoa.xhtml";
+	return "index";
 }
+
+public List<Funcionario> getFuncionarios() {
+	funcionarios = funcionarioDao.ListaTodos();
+	return funcionarios;
+}
+
+public void setFuncionarios(List<Funcionario> funcionarios) {
+	this.funcionarios = funcionarios;
+}
+
 
 public Funcionario getFuncionario() {
 	return funcionario;
@@ -33,16 +43,6 @@ public Funcionario getFuncionario() {
 
 public void setFuncionario(Funcionario funcionario) {
 	this.funcionario = funcionario;
-}
-
-
-
-public List<Funcionario> getFuncionarios() {
-	return funcionarios;
-}
-
-public void setFuncionarios(List<Funcionario> funcionarios) {
-	this.funcionarios = funcionarios;
 }
 
 

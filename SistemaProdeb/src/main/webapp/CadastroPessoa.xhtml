@@ -16,18 +16,18 @@
 	<p:graphicImage library="IMG" name="prodeb1.png"/>
 	
 	<h1 class="center">CADASTRO DE FUNCIONÁRIO</h1>
-	<h:form id="form">
+	<h:form>
 		<div class="center">
 			<p:panel icon="ui-icon-check" header="Cadastro" style="width:32%" >
 				<p:growl autoUpdate="true" life="2000"/>
 				<h:panelGrid columns="2">
 					<p:outputLabel value="Nome:" for="nome"/>
-					<p:inputText value="#{funci.funcionario.nome}" size="25" id="nome" placeholder="Digite o nome aqui..." required="true" requiredMessage="O Nome é Obrigatório!"/>
+					<p:inputText value="#{funci.funcionario.nome}" size="30" id="nome" placeholder="Digite o nome aqui..." required="true" requiredMessage="O Nome é Obrigatório!"/>
 					<p:outputLabel value="E-Mail:" for="email"/>
-					<p:inputText value="#{funci.funcionario.email}" size="25" id="email" placeholder="Digite o e-mail aqui..." required="true" requiredMessage="O E-Mail é Obrigatório!"/>
+					<p:inputText value="#{funci.funcionario.email}" size="30" id="email" placeholder="Digite o e-mail aqui..." required="true" requiredMessage="O E-Mail é Obrigatório!"/>
 				</h:panelGrid>
 					<div id="right">
-						<p:commandButton icon="ui-icon-plusthick" value="Adicionar"   update="form tabelaPessoa"/>
+						<p:commandButton action="#{funci.salvar}" icon="ui-icon-plusthick" value="Adicionar"/>
 					</div>
 			</p:panel>
 		</div>
@@ -35,10 +35,10 @@
 	
 	<h1>Lista de Funcionários</h1>
 	<p:panel style="width:85%">
-	<p:dataTable value="#{funci.funcionario}" var="p" border="1" id="tabelaPessoa">
+	<p:dataTable value="#{funci.funcionarios}" var="funcio" border="1">
 		
-		<p:column headerText="Nome" >#{p.nome}</p:column>
-		<p:column headerText="Email" >#{p.email}</p:column>
+		<p:column headerText="Nome" >#{funcio.nome}</p:column>
+		<p:column headerText="Email" >#{funcio.email}</p:column>
 	
 	</p:dataTable>
 	</p:panel>

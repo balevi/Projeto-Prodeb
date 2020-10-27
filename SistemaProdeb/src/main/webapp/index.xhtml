@@ -12,6 +12,26 @@
 </h:head>
 <h:body>
 	<h1>Login Prodeb</h1>
+	
+	
+		<h:form id="form">
+		<div class="center">
+			<p:panel icon="ui-icon-check" header="Cadastro" style="width:32%" >
+				<p:growl autoUpdate="true" life="2000"/>
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome:" for="nome"/>
+					<p:inputText value="#{funci.funcionario.nome}" size="30" id="nome" placeholder="Digite o nome aqui..." required="true" requiredMessage="O Nome é Obrigatório!"/>
+					<p:outputLabel value="E-Mail:" for="email"/>
+					<p:inputText value="#{funci.funcionario.email}" size="30" id="email" placeholder="Digite o e-mail aqui..." required="true" requiredMessage="O E-Mail é Obrigatório!"/>
+				</h:panelGrid>
+					<div id="right">
+						<p:commandButton action="#{funci.salvar}" icon="ui-icon-plusthick" value="Adicionar" />
+					</div>
+			</p:panel>
+		</div>
+	</h:form>
+	
+	
 	<h:form>
 	<p:messages autoUpdate="true" id="msg"/>
 		<p:panel header="Login" style="width:30%; height:120px" >

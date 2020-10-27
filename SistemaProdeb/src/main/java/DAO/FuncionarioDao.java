@@ -29,9 +29,9 @@ public class FuncionarioDao {
 		return funcionario;
 	}
 	
-	public void salvar(Funcionario funcionario) {
+	public void salvar(Funcionario funci) {
 		em.getTransaction().begin();
-		em.merge(funcionario);
+		em.persist(funci);
 		em.getTransaction().commit();
 		emf.close();
 	}
