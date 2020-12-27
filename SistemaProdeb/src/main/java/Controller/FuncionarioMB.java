@@ -1,9 +1,10 @@
 package Controller;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 //import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 //import javax.faces.bean.ManagedBean;
@@ -13,46 +14,46 @@ import Model.Funcionario;
 import DAO.FuncionarioDao;
 
 @Named("funci")
-@RequestScoped
-public class FuncionarioMB implements Serializable {
+@SessionScoped
+public class FuncionarioMB {
 
-	private static final long serialVersionUID = 1L;
 	@Inject
-	Funcionario funcionario;
-	
-	List<Funcionario> funcionarios;
-	FuncionarioDao funcionarioDao;
+	Funcionario funcionario = new Funcionario();
+	List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+	FuncionarioDao funcionarioDao = new FuncionarioDao();
 	
 	public FuncionarioMB () {
-		funcionarioDao = new FuncionarioDao();
-		funcionario = new Funcionario();
+		funcionarios = funcionarioDao.listaTodos();
 	}
 
 	public String salvar() {
 		funcionarioDao.salvar(funcionario);
+		limparObjeto();
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("Salvo com sucesso!"));
+
+		this.getFuncionarios();
 		return "CadastroPessoa";
 	}
+	
+	public String limparObjeto() {
+		funcionario = new Funcionario();
+		return "";
+	}
+	
 
 	public List<Funcionario> getFuncionarios() {
-		funcionarios = funcionarioDao.ListaTodos();
+		funcionarios = funcionarioDao.listaTodos();
 		return funcionarios;
 	}
-
-	public void setFuncionarios(List<Funcionario> funcionarios) {
-		this.funcionarios = funcionarios;
-	}
-
 
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
 
-
-
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;	
 	}
-
-
 
 }

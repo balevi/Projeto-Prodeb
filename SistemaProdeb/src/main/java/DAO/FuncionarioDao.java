@@ -1,11 +1,9 @@
 package DAO;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 
 import Model.Funcionario;
 
@@ -16,40 +14,61 @@ public class FuncionarioDao {
 	
 	public FuncionarioDao() {
 		emf = Persistence.createEntityManagerFactory("prodeb");
-		em = emf.createEntityManager();
+		//em = emf.createEntityManager();
 	}
 	
 	
 	
 	public Funcionario obterPorId(int id) {
+		try {
+		em = emf.createEntityManager();
 		em.getTransaction().begin();
 		Funcionario funcionario = em.find(Funcionario.class,id);
 		em.getTransaction().commit();
-		emf.close();
+		em.close();
 		return funcionario;
+		} catch (Exception e) {
+			System.out.println("Erro interno ao tentar inserir no banco!");
+		}
+		return null;
 	}
 	
 	public void salvar(Funcionario funci) {
+		try {
+		em = emf.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(funci);
 		em.getTransaction().commit();
-		emf.close();
+		em.close();
+		} catch (Exception e) {
+			System.out.println("Erro interno ao tentar inserir no banco!");
+		}
 	}
 	
 	public void remover(Funcionario funcionario) {
+		try {
+		em = emf.createEntityManager();
 		em.getTransaction().begin();
 		em.remove(funcionario);
 		em.getTransaction().commit();
-		emf.close();
+		em.close();
+		} catch (Exception e) {
+			System.out.println("Erro interno ao tentar inserir no banco!");
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Funcionario> ListaTodos() {
+	public List<Funcionario> listaTodos() {
+		try {
+		em = emf.createEntityManager();
 		em.getTransaction().begin();
-		Query consulta = em.createQuery("select funcionario from Funcionario funcionario");
-		List<Funcionario> funcionario = consulta.getResultList();
+		List<Funcionario> funcionarios = em.createQuery("select	f from Funcionario f").getResultList();
 		em.getTransaction().commit();
-		emf.close();
-		return funcionario;
+		em.close();
+		return funcionarios;
+		} catch (Exception e) {
+			System.out.println("Erro interno ao tentar listar no banco!");
+		}
+		return null;
 	}
 }
