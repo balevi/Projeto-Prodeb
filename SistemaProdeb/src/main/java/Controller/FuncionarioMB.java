@@ -2,7 +2,8 @@ package Controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.SessionScoped;
+
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 //import javax.enterprise.context.SessionScoped;
@@ -14,7 +15,7 @@ import Model.Funcionario;
 import DAO.FuncionarioDao;
 
 @Named("funci")
-@SessionScoped
+@RequestScoped
 public class FuncionarioMB {
 
 	@Inject
@@ -37,9 +38,23 @@ public class FuncionarioMB {
 		return "CadastroPessoa";
 	}
 	
-	public String limparObjeto() {
+	public String editar() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("Atualizado com sucesso!"));
+		return "EditaPessoa";
+	}
+	
+	public String excluir() {
+		funcionarioDao.remover(funcionario);
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("Excluido com sucesso!"));
+		this.getFuncionarios();
+		return "CadastroPessoa";
+	}
+	
+	public void limparObjeto() {
 		funcionario = new Funcionario();
-		return "";
+		
 	}
 	
 

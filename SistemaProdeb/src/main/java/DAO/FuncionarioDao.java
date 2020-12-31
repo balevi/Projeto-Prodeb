@@ -37,7 +37,8 @@ public class FuncionarioDao {
 		try {
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
-		em.persist(funci);
+		//em.persist(funci);
+		em.merge(funci);
 		em.getTransaction().commit();
 		em.close();
 		} catch (Exception e) {
@@ -49,11 +50,11 @@ public class FuncionarioDao {
 		try {
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
-		em.remove(funcionario);
+		em.remove(em.getReference(Funcionario.class, funcionario.getId()));
 		em.getTransaction().commit();
 		em.close();
 		} catch (Exception e) {
-			System.out.println("Erro interno ao tentar inserir no banco!");
+			System.out.println("Erro interno ao tentar excluir no banco!");
 		}
 	}
 	

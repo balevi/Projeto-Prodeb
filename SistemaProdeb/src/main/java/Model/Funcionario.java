@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Funcionario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
+	@Column
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
@@ -24,6 +24,12 @@ public class Funcionario implements Serializable{
 	private String email;
 	
 	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getNome() {
 		return nome;
 	}

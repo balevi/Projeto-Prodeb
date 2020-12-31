@@ -17,9 +17,9 @@
 	
 	<h1 class="center">CADASTRO DE FUNCIONÁRIO</h1>
 	<h:form>
-		<p:growl id="growl" /> 
+		
 		<div class="center">
-			<p:panel icon="ui-icon-check" header="Cadastro" style="width:32%" >
+			<p:panel  header="Cadastro" style="width:32%" >
 				<h:panelGrid columns="2">
 					<p:outputLabel value="Nome:" for="nome"/>
 					<p:inputText value="#{funci.funcionario.nome}" size="25" id="nome" 
@@ -40,18 +40,43 @@
 	
 	<h1>Lista de Funcionários</h1>
 	<p:panel style="width:85%">
+	<h:form>
+	<p:dataTable value="#{funci.funcionarios}" var="fun" border="1" id="table" paginator="true" rows="5" paginatorPosition="bottom" >
 
-	<p:dataTable value="#{funci.funcionarios}" var="fun" border="1" id="table" >
-		
-		<p:column headerText="Nome" >
-			<h:outputLabel value="#{fun.nome}"/>
+		<p:column>
+			<f:facet name="header">Nome</f:facet>
+			#{fun.nome}
 		</p:column>
-		<p:column headerText="Email" >
-			<h:outputLabel value="#{fun.email}"/>
+		<p:column>
+			<f:facet name="header">Email</f:facet>
+			#{fun.email}
+		</p:column>
+		<p:column  style="width:50px">
+			<p:commandLink action="#{funci.editar}">Editar<i class="ui-icon ui-icon-pencil"></i>
+			<f:setPropertyActionListener value="#{fun}" target="#{funci.funcionario}"></f:setPropertyActionListener>
+			</p:commandLink>
+		</p:column>
+		<p:column style="width:50px">
+		
+    		
+    		<p:growl id="growl"></p:growl>
+			
+			<p:commandLink action ="#{funci.excluir}" update="table" >Excluir<i class="ui-icon ui-icon-close"></i>
+    		<f:setPropertyActionListener value="#{fun}" target="#{funci.funcionario}"></f:setPropertyActionListener>
+    		<p:confirm header="Confirmação!" message="Tem certeza que deseja excluir?" icon="pi pi-exclamation-triangle" />
+			</p:commandLink>
+     
+    		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        	<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+        	<p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+    		</p:confirmDialog>  
+    
 		</p:column>
 	
 	</p:dataTable>
+	</h:form>
 	</p:panel>
+	
 	
 	
 </h:body>
