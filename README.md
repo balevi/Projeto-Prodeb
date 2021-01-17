@@ -4,9 +4,9 @@
 ---
 ##  ✉ Sobre
 
-O **Projeto Prodeb** é a Implementação do mini sistema CRUD JSF/JAVA, realizado durante meu período de Estagio da empresa PRODEB,
-cujo a finalidade do mesmo e o cadastro, alteração, consulta e exclusão de registro de funcionarios além da sua ordenação e paginação. foram utilizados
-para desenvolvimento o modelo MVC (Model, View, Control) para melhor utilização do JSF.
+O **Projeto Prodeb** é a Implementação do mini sistema CRUD JSF/JAVA, realizado durante meu período de estagio da empresa PRODEB,
+cujo a finalidade do mesmo e o cadastro, alteração, consulta e exclusão de registro de funcionários além da sua ordenação e paginação. foram utilizados
+para padrão de projeto o modelo MVC (Model, View, Control).
 ---
 ## 🛠 Tecnologia utilizadas
 
