@@ -19,7 +19,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
 - [APACHE](https://www.apache.org)
 - [MySql](https://www.mysql.com)
 ---
-## Como iniciar o projeto
+## ✔ Como iniciar o projeto
 
 ```bash
 # Clona o repositorio
